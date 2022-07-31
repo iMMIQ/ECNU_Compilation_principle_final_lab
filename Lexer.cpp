@@ -14,6 +14,8 @@ Token Lexer::get_token() {
         std::swap(id, s);
       } else if (p.first == Token::IntNum) {
         int_num = std::stoi(s);
+      } else if (p.first == Token::RealNum) {
+        real_num = std::stod(s);
       }
       return p.first;
     }
