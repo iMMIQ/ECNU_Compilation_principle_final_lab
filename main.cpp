@@ -9,7 +9,29 @@ using std::endl;
 using std::regex;
 using std::string;
 
-enum class Token { End, ID, Int, IntNum, Real, RealNum, If, Then, Else, Error };
+enum class Token {
+  // 分号
+  End,
+  // 标识符以字母开头，以字母或数字结尾。
+  // 关键字不能是标识符，标识符的最大长度为64个字符。
+  ID,
+  // int
+  Int,
+  // 整数
+  IntNum,
+  // real
+  Real,
+  // 实数
+  RealNum,
+  // if
+  If,
+  // then
+  Then,
+  // else
+  Else,
+  // 异常token
+  Error
+};
 
 using Pattern = std::pair<Token, regex>;
 
@@ -26,14 +48,8 @@ std::vector<Pattern> pattern{
     {Token::IntNum, regex("[0-9]+")},
 };
 
-// 标识符以字母开头，以字母或数字结尾。 关键字不能是标识符，标识符的最大长度为
-// 64 个字符。
 static string id;
-
-// 整数
 static int int_num;
-
-// 实数
 static double real_num;
 
 auto get_token() {
