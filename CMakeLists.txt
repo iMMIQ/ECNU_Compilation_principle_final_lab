@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.18)
 project(ECNU_Compilation_principle_final_lab)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 
 find_package(LLVM REQUIRED CONFIG)
 
