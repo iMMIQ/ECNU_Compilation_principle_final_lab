@@ -4,7 +4,7 @@
 
 using std::cin;
 
-auto Lexer::get_token() {
+Token Lexer::get_token() {
   string s;
   cin >> s;
 

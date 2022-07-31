@@ -67,7 +67,7 @@ public:
   static inline int int_num;
   static inline double real_num;
 
-  static auto get_token();
+  static Token get_token();
 
 private:
   using Pattern = std::pair<Token, regex>;
@@ -78,17 +78,17 @@ private:
       {Token::Int, regex("int")},
       {Token::Real, regex("real")},
       {Token::Assignment, regex("=")},
-      {Token::Plus, regex("+")},
+      {Token::Plus, regex("\\+")},
       {Token::Minus, regex("-")},
-      {Token::Multiplies, regex("*")},
+      {Token::Multiplies, regex("\\*")},
       {Token::Divides, regex("/")},
       {Token::If, regex("if")},
       {Token::Then, regex("then")},
       {Token::Else, regex("else")},
-      {Token::LeftRoundBracket, regex("(")},
-      {Token::RightRoundBracket, regex(")")},
-      {Token::LeftCurlyBracket, regex("{")},
-      {Token::RightCurlyBracket, regex("}")},
+      {Token::LeftRoundBracket, regex("\\(")},
+      {Token::RightRoundBracket, regex("\\)")},
+      {Token::LeftCurlyBracket, regex("\\{")},
+      {Token::RightCurlyBracket, regex("\\}")},
       {Token::Less, regex("<")},
       {Token::Greater, regex(">")},
       {Token::LessEqual, regex("<=")},
@@ -97,6 +97,8 @@ private:
       {Token::End, regex(";")},
       {Token::ID, regex("[a-zA-Z]([a-zA-Z0-9]){0,63}")},
       {Token::IntNum, regex("[0-9]+")},
+      {Token::RealNum,
+       regex("([0-9]+[Ee][+-]?[0-9]+)|([0-9]+\\.[0-9]+[[Ee][+-]?[0-9]+]?)")},
   };
 };
 
