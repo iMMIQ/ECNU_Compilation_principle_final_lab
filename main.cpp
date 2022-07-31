@@ -52,7 +52,7 @@ auto get_token() {
   for (const auto &p : pattern) {
     if (std::regex_match(s, p.second)) {
       if (p.first == Token::ID) {
-        id = std::move(s);
+        std::swap(id, s);
       } else if (p.first == Token::IntNum) {
         int_num = std::stoi(s);
       }
