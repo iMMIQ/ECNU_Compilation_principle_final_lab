@@ -53,15 +53,8 @@ static int int_num;
 static double real_num;
 
 auto get_token() {
-  char last_char = static_cast<char>(getchar());
-  while (std::isspace(last_char)) {
-    last_char = static_cast<char>(getchar());
-  }
   string s;
-  do {
-    s += last_char;
-    last_char = static_cast<char>(getchar());
-  } while (!std::isspace(last_char));
+  cin >> s;
 
   for (const auto &p : pattern) {
     if (std::regex_match(s, p.second)) {
