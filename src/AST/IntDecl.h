@@ -9,6 +9,6 @@ class IntDecl : public Decl {
 public:
   IntDecl(std::unique_ptr<IdExpr> id, std::unique_ptr<IntNumExpr> int_num)
       : Decl(std::move(id)), int_num(std::move(int_num)) {}
-}
+};
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_INTDECL_H

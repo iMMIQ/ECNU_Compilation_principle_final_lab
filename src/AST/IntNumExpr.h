@@ -8,6 +8,6 @@ class IntNumExpr : public Expr {
 
 public:
   explicit IntNumExpr(int value) : value(value) {}
-}
+};
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_INTNUMEXPR_H
