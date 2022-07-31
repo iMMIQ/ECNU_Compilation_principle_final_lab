@@ -1,0 +1,9 @@
+#ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_EXPR_H
+#define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_EXPR_H
+
+class Expr {
+public:
+  virtual ~Expr() = default;
+};
+
+#endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_EXPR_H
