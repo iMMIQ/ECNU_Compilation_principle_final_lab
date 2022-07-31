@@ -78,7 +78,7 @@ private:
       {Token::LeftRoundBracket, regex("(")},
       {Token::RightRoundBracket, regex(")")},
       {Token::LeftCurlyBracket, regex("{")},
-      {Token::RightRoundBracket, regex("}")},
+      {Token::RightCurlyBracket, regex("}")},
       {Token::End, regex(";")},
       {Token::ID, regex("[a-zA-Z]([a-zA-Z0-9]){0,63}")},
       {Token::IntNum, regex("[0-9]+")},
