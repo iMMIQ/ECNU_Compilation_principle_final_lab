@@ -3,11 +3,11 @@
 
 #import <regex>
 #import <string>
-#import <vector>
+
+#import "llvm/ADT/SmallVector.h"
 
 using std::regex;
 using std::string;
-using std::vector;
 
 enum class Token {
   // 分号
@@ -74,7 +74,7 @@ private:
 
   // 用于正则表达式匹配
   // 注意匹配顺序
-  static inline const vector<Pattern> pattern{
+  static inline const llvm::SmallVector<Pattern, 23> pattern{
       {Token::Int, regex("int")},
       {Token::Real, regex("real")},
       {Token::Assignment, regex("=")},
