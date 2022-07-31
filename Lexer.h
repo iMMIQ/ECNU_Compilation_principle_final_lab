@@ -37,10 +37,11 @@ enum class Token {
 
 class Lexer {
 public:
+  static inline string id;
+  static inline int int_num;
+  static inline double real_num;
+
   static auto get_token();
-  static string id;
-  static int int_num;
-  static double real_num;
 
 private:
   using Pattern = std::pair<Token, regex>;
