@@ -1,10 +1,10 @@
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_LEXER_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_LEXER_H
 
+#import "llvm/ADT/SmallVector.h"
+
 #import <regex>
 #import <string>
-
-#import "llvm/ADT/SmallVector.h"
 
 using std::regex;
 using std::string;
