@@ -25,6 +25,14 @@ enum class Token {
   RealNum,
   // = 赋值
   Assignment,
+  // +
+  Plus,
+  // -
+  Minus,
+  // *
+  Multiplies,
+  // /
+  Divides,
   // if
   If,
   // then
@@ -52,6 +60,10 @@ private:
       {Token::Int, regex("int")},
       {Token::Real, regex("real")},
       {Token::Assignment, regex("=")},
+      {Token::Plus, regex("+")},
+      {Token::Minus, regex("-")},
+      {Token::Multiplies, regex("*")},
+      {Token::Divides, regex("/")},
       {Token::If, regex("if")},
       {Token::Then, regex("then")},
       {Token::Else, regex("else")},
