@@ -42,9 +42,6 @@ auto get_token() {
   }
   string s;
   do {
-    if (last_char == ';') {
-      return Token::End;
-    }
     s += last_char;
     last_char = static_cast<char>(getchar());
   } while (!std::isspace(last_char));
