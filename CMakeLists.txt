@@ -22,6 +22,6 @@ llvm_map_components_to_libnames(llvm_libs
         Support
         native)
 
-add_executable(ECNU_Compilation_principle_final_lab main.cpp Lexer.cpp Lexer.h)
+add_executable(ECNU_Compilation_principle_final_lab src/main.cpp src/lexer/Lexer.cpp src/lexer/Lexer.h)
 
 target_link_libraries(ECNU_Compilation_principle_final_lab ${llvm_libs})
