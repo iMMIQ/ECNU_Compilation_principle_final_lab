@@ -47,6 +47,16 @@ enum class Token {
   LeftCurlyBracket,
   // }
   RightCurlyBracket,
+  // <
+  Less,
+  // >
+  Greater,
+  // <=
+  LessEqual,
+  // >=
+  GreaterEqual,
+  // ==
+  Equal,
   // 异常token
   Error
 };
@@ -79,6 +89,11 @@ private:
       {Token::RightRoundBracket, regex(")")},
       {Token::LeftCurlyBracket, regex("{")},
       {Token::RightCurlyBracket, regex("}")},
+      {Token::Less, regex("<")},
+      {Token::Greater, regex(">")},
+      {Token::LessEqual, regex("<=")},
+      {Token::GreaterEqual, regex(">=")},
+      {Token::Equal, regex("==")},
       {Token::End, regex(";")},
       {Token::ID, regex("[a-zA-Z]([a-zA-Z0-9]){0,63}")},
       {Token::IntNum, regex("[0-9]+")},
