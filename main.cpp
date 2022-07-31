@@ -23,6 +23,8 @@ enum class Token {
   Real,
   // 实数
   RealNum,
+  // = 赋值
+  Assignment,
   // if
   If,
   // then
@@ -40,6 +42,7 @@ using Pattern = std::pair<Token, regex>;
 std::vector<Pattern> pattern{
     {Token::Int, regex("int")},
     {Token::Real, regex("real")},
+    {Token::Assignment, regex("=")},
     {Token::If, regex("if")},
     {Token::Then, regex("then")},
     {Token::Else, regex("else")},
