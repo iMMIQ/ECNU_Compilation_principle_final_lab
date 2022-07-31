@@ -39,6 +39,14 @@ enum class Token {
   Then,
   // else
   Else,
+  // (
+  LeftRoundBracket,
+  // )
+  RightRoundBracket,
+  // {
+  LeftCurlyBracket,
+  // }
+  RightCurlyBracket,
   // 异常token
   Error
 };
@@ -67,6 +75,10 @@ private:
       {Token::If, regex("if")},
       {Token::Then, regex("then")},
       {Token::Else, regex("else")},
+      {Token::LeftRoundBracket, regex("(")},
+      {Token::RightRoundBracket, regex(")")},
+      {Token::LeftCurlyBracket, regex("{")},
+      {Token::RightRoundBracket, regex("}")},
       {Token::End, regex(";")},
       {Token::ID, regex("[a-zA-Z]([a-zA-Z0-9]){0,63}")},
       {Token::IntNum, regex("[0-9]+")},
