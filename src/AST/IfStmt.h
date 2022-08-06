@@ -13,6 +13,8 @@ public:
          std::unique_ptr<Stmt> then_stmt, std::unique_ptr<Stmt> else_stmt)
       : bool_expr(std::move(bool_expr)), then_stmt(std::move(then_stmt)),
         else_stmt(std::move(else_stmt)) {}
+
+  auto code_gen() -> void override;
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_IFSTMT_H

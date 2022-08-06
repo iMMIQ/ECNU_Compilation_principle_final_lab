@@ -13,6 +13,8 @@ protected:
   BinaryExpr(const char op, std::unique_ptr<Expr> lhs,
              std::unique_ptr<Expr> rhs)
       : op(op), lhs(std::move(lhs)), rhs(std::move(rhs)) {}
+
+  auto code_gen() -> llvm::Value * override = 0;
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_BINARYEXPR_H

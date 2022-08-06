@@ -8,6 +8,8 @@ class RealNumExpr : public Expr {
 
 public:
   explicit RealNumExpr(double value) : value(value) {}
+
+  auto code_gen() -> llvm::Value * override;
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_REALNUMEXPR_H

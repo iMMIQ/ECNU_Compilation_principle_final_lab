@@ -7,5 +7,7 @@ class BoolBinaryExpr : public BinaryExpr {
 public:
   BoolBinaryExpr(char op, std::unique_ptr<Expr> lhs, std::unique_ptr<Expr> rhs)
       : BinaryExpr(op, std::move(lhs), std::move(rhs)) {}
+
+  auto code_gen() -> llvm::Value * override;
 };
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_BOOLBINARYEXPR_H

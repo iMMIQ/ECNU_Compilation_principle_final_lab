@@ -10,6 +10,8 @@ class IdExpr : public Expr {
 
 public:
   IdExpr(const std::string &name) : name(name) {}
+
+  auto code_gen() -> llvm::Value * override;
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_IDEXPR_H

@@ -3,6 +3,7 @@
 
 #include "CompoundStmt.h"
 #include "Decl.h"
+
 class Program {
   static std::vector<std::unique_ptr<Decl>> decls;
   static std::unique_ptr<CompoundStmt> compound_stmt;
@@ -15,6 +16,8 @@ public:
   static void set_compound_stmt(std::unique_ptr<CompoundStmt> compound_stmt) {
     swap(Program::compound_stmt, compound_stmt);
   }
+
+  static auto code_gen() -> void;
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_PROGRAM_H
