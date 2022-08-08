@@ -14,7 +14,7 @@ public:
            std::unique_ptr<ArithBinaryExpr> arith_expr)
       : id(std::move(id)), arith_expr(std::move(arith_expr)) {}
 
-  auto code_gen() -> void override;
+  auto code_gen() -> llvm::Value * override;
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_ASSGSTMT_H

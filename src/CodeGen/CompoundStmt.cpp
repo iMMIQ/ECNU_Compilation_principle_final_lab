@@ -1,7 +1,9 @@
 #import "../AST/CompoundStmt.h"
 
-auto CompoundStmt::code_gen() -> void {
+auto CompoundStmt::code_gen() -> llvm::Value * {
+  llvm::Value *last;
   for (const auto &stmt : stmts) {
-    stmt->code_gen();
+    last = stmt->code_gen();
   }
+  return last;
 }

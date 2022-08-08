@@ -1,10 +1,10 @@
 #import "../AST/IfStmt.h"
 #import "../AST/Program.h"
 
-auto IfStmt::code_gen() -> void {
+auto IfStmt::code_gen() -> llvm::Value * {
   llvm::Value *cond = bool_expr->code_gen();
   if (!cond) {
-    return;
+    return nullptr;
   }
 
   cond = Program::builder->CreateFCmpONE(
@@ -18,12 +18,24 @@ auto IfStmt::code_gen() -> void {
 
   Program::builder->CreateCondBr(cond, then_block, else_block);
   Program::builder->SetInsertPoint(then_block);
-  then_stmt->code_gen();
+  auto *then_value = then_stmt->code_gen();
+
   Program::builder->CreateBr(merge_block);
+  then_block = Program::builder->GetInsertBlock();
+
   func->getBasicBlockList().push_back(else_block);
   Program::builder->SetInsertPoint(else_block);
-  else_stmt->code_gen();
+  auto *else_value = else_stmt->code_gen();
+
   Program::builder->CreateBr(merge_block);
+  else_block = Program::builder->GetInsertBlock();
+
   func->getBasicBlockList().push_back(merge_block);
   Program::builder->SetInsertPoint(merge_block);
+  llvm::PHINode *phi =
+      Program::builder->CreatePHI(llvm::Type::getInt32Ty(*Program::context), 2);
+
+  phi->addIncoming(then_value, then_block);
+  phi->addIncoming(else_value, else_block);
+  return phi;
 }
