@@ -5,7 +5,6 @@ class Stmt {
 public:
   virtual ~Stmt() = default;
 
-protected:
   virtual auto code_gen() -> void = 0;
 };
 
