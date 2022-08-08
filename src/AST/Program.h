@@ -4,6 +4,7 @@
 #import "CompoundStmt.h"
 #import "Decl.h"
 
+#import <llvm/IR/Function.h>
 #import <llvm/IR/IRBuilder.h>
 #import <llvm/IR/LLVMContext.h>
 #import <llvm/IR/Module.h>
@@ -19,6 +20,7 @@ class Program {
 public:
   static inline std::unique_ptr<llvm::LLVMContext> context;
   static inline std::unique_ptr<llvm::Module> module;
+  static inline std::unique_ptr<llvm::Function> function;
   static inline std::unique_ptr<llvm::IRBuilder<>> builder;
   static inline std::map<std::string, llvm::Value *> named_values;
 
