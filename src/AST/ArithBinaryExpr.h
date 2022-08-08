@@ -5,7 +5,8 @@
 
 class ArithBinaryExpr : public BinaryExpr {
 public:
-  ArithBinaryExpr(char op, std::unique_ptr<Expr> lhs, std::unique_ptr<Expr> rhs)
+  ArithBinaryExpr(const Token op, std::unique_ptr<Expr> lhs,
+                  std::unique_ptr<Expr> rhs)
       : BinaryExpr(op, std::move(lhs), std::move(rhs)) {}
 
   auto code_gen() -> llvm::Value * override;

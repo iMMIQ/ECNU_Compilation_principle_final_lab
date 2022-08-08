@@ -9,13 +9,13 @@ auto ArithBinaryExpr::code_gen() -> llvm::Value * {
   }
 
   switch (op) {
-  case '+':
+  case Token::Plus:
     return Program::builder->CreateAdd(l, r);
-  case '-':
+  case Token::Minus:
     return Program::builder->CreateSub(l, r);
-  case '*':
+  case Token::Multiplies:
     return Program::builder->CreateMul(l, r);
-  case '/':
+  case Token::Divides:
     return Program::builder->CreateSDiv(l, r);
   default:
     return nullptr;
