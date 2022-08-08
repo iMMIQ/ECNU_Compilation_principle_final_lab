@@ -7,7 +7,6 @@ class Expr {
 public:
   virtual ~Expr() = default;
 
-protected:
   virtual auto code_gen() -> llvm::Value * = 0;
 };
 
