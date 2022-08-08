@@ -1,7 +1,7 @@
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_BINARYEXPR_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_BINARYEXPR_H
 
-#include "../Lexer/Lexer.h"
+#import "../Lexer/Lexer.h"
 #import "Expr.h"
 
 #import <memory>
