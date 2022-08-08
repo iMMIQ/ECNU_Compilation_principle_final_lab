@@ -1,6 +1,6 @@
 #import "../AST/IntDecl.h"
-#import "Global.h"
+#import "../AST/Program.h"
 
 auto IntDecl::code_gen() -> void {
-  Global::named_values[id->get_name()] = int_num->code_gen();
+  Program::named_values[id->get_name()] = int_num->code_gen();
 }

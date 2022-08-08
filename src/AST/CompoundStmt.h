@@ -1,10 +1,10 @@
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_COMPOUNDSTMT_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_COMPOUNDSTMT_H
 
-#include "Stmt.h"
+#import "Stmt.h"
 
-#include <memory>
-#include <vector>
+#import <memory>
+#import <vector>
 
 class CompoundStmt : public Stmt {
   std::vector<std::unique_ptr<Stmt>> stmts;

@@ -1,8 +1,8 @@
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_REALDECL_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_REALDECL_H
 
-#include "Decl.h"
-#include "RealNumExpr.h"
+#import "Decl.h"
+#import "RealNumExpr.h"
 
 class RealDecl : public Decl {
   std::unique_ptr<RealNumExpr> real_num;
