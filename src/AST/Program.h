@@ -21,7 +21,7 @@ public:
   static inline auto context = std::make_unique<llvm::LLVMContext>();
   static inline auto module =
       std::make_unique<llvm::Module>("program", *Program::context);
-  static inline auto function = llvm::Function::Create(
+  static inline auto main_func = llvm::Function::Create(
       llvm::FunctionType::get(llvm::Type::getInt32Ty(*Program::context), false),
       llvm::Function::ExternalLinkage, "main", *module);
   static inline auto builder =

@@ -1,11 +1,16 @@
 #import "../AST/Program.h"
 
 auto Program::code_gen() -> void {
+  module->setTargetTriple("x86_64-unknown-linux-gnu");
+
+  builder->SetInsertPoint(
+      llvm::BasicBlock::Create(*context, "entry", main_func));
+
   for (const auto &decl : decls) {
     decl->code_gen();
   }
 
-  //  compound_stmt->code_gen();
+  // compound_stmt->code_gen();
 
   auto printf_func = llvm::Function::Create(
       llvm::FunctionType::get(llvm::Type::getInt32Ty(*context),
