@@ -18,5 +18,6 @@ void Program::parse() {
         Program::push_back(std::move(decl));
       }
     }
+    std::ignore = ParserUtils::get_next_token();
   }
 }
