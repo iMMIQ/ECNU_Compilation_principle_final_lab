@@ -14,14 +14,18 @@
 #import <memory>
 
 class Program {
-  static std::vector<std::unique_ptr<Decl>> decls;
-  static std::unique_ptr<CompoundStmt> compound_stmt;
+  static inline std::vector<std::unique_ptr<Decl>> decls;
+  static inline std::unique_ptr<CompoundStmt> compound_stmt{};
 
 public:
-  static inline std::unique_ptr<llvm::LLVMContext> context;
-  static inline std::unique_ptr<llvm::Module> module;
-  static inline std::unique_ptr<llvm::Function> function;
-  static inline std::unique_ptr<llvm::IRBuilder<>> builder;
+  static inline auto context = std::make_unique<llvm::LLVMContext>();
+  static inline auto module =
+      std::make_unique<llvm::Module>("program", *Program::context);
+  static inline auto function = llvm::Function::Create(
+      llvm::FunctionType::get(llvm::Type::getInt32Ty(*Program::context), false),
+      llvm::Function::ExternalLinkage, "main", *module);
+  static inline auto builder =
+      std::make_unique<llvm::IRBuilder<>>(*Program::context);
   static inline std::map<std::string, llvm::Value *> named_values;
 
   template <typename... Args> static void emplace_back(Args &&...args) {
