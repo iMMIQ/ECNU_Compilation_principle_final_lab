@@ -1,10 +1,7 @@
-#import <iostream>
-
-using std::cin;
-using std::cout;
-using std::endl;
+#import "AST/Program.h"
 
 int main() {
-  cout << "hello, world!" << endl;
+  Program::code_gen();
+  Program::module->print(llvm::errs(), nullptr);
   return 0;
 }

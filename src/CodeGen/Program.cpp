@@ -5,7 +5,7 @@ auto Program::code_gen() -> void {
     decl->code_gen();
   }
 
-  compound_stmt->code_gen();
+  //  compound_stmt->code_gen();
 
   for (const auto &i : named_values) {
     llvm::Value *value = i.second;

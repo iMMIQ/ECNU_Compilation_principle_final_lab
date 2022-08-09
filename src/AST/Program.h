@@ -15,7 +15,7 @@
 
 class Program {
   static inline std::vector<std::unique_ptr<Decl>> decls;
-  static inline std::unique_ptr<CompoundStmt> compound_stmt{};
+  static inline std::unique_ptr<CompoundStmt> compound_stmt;
 
 public:
   static inline auto context = std::make_unique<llvm::LLVMContext>();
