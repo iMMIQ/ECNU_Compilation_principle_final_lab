@@ -16,6 +16,8 @@ public:
              std::unique_ptr<Expr> rhs)
       : op(op), lhs(std::move(lhs)), rhs(std::move(rhs)) {}
 
+  virtual ~BinaryExpr() = default;
+
   auto code_gen() -> llvm::Value * override = 0;
 };
 
