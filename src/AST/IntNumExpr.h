@@ -10,6 +10,8 @@ public:
   explicit IntNumExpr(int value) : value(value) {}
 
   auto code_gen() -> llvm::Value * override;
+
+  static std::unique_ptr<IntNumExpr> parse();
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_INTNUMEXPR_H

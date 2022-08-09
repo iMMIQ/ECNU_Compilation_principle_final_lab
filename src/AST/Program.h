@@ -10,6 +10,7 @@
 #import <llvm/IR/Module.h>
 #import <llvm/IR/Value.h>
 
+#import <iostream>
 #import <map>
 #import <memory>
 
@@ -27,10 +28,13 @@ public:
   static inline auto builder =
       std::make_unique<llvm::IRBuilder<>>(*Program::context);
   static inline std::map<std::string, llvm::Value *> named_values;
+  static inline std::istream *in;
 
-  template <typename... Args> static void emplace_back(Args &&...args) {
-    decls.emplace_back(std::forward<Args>(args)...);
+  static void push_back(std::unique_ptr<Decl> decl) {
+    decls.push_back(std::move(decl));
   }
+
+  static void parse();
 
   static void set_compound_stmt(std::unique_ptr<CompoundStmt> _compound_stmt) {
     swap(Program::compound_stmt, _compound_stmt);

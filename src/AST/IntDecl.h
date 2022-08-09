@@ -12,6 +12,8 @@ public:
       : Decl(std::move(id)), int_num(std::move(int_num)) {}
 
   auto code_gen() -> void override;
+
+  static std::unique_ptr<IntDecl> parse();
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_INTDECL_H

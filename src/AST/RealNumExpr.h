@@ -10,6 +10,8 @@ public:
   explicit RealNumExpr(double value) : value(value) {}
 
   auto code_gen() -> llvm::Value * override;
+
+  static std::unique_ptr<RealNumExpr> parse();
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_REALNUMEXPR_H

@@ -14,6 +14,8 @@ public:
   const std::string &get_name() const { return name; }
 
   auto code_gen() -> llvm::Value * override;
+
+  static std::unique_ptr<IdExpr> parse();
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_IDEXPR_H

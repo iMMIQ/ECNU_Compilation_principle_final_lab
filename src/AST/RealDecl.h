@@ -12,6 +12,8 @@ public:
       : Decl(std::move(id)), real_num(std::move(real_num)) {}
 
   auto code_gen() -> void override;
+
+  static std::unique_ptr<RealDecl> parse();
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_REALDECL_H
