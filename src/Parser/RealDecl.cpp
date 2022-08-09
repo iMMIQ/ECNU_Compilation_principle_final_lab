@@ -13,6 +13,8 @@ std::unique_ptr<RealDecl> RealDecl::parse() {
     // TODO: handle invalid
   }
   auto int_num = RealNumExpr::parse();
-  std::ignore = ParserUtils::get_next_token();
+  if (ParserUtils::get_next_token() != Token::End) {
+    // TODO: handle invalid
+  }
   return std::make_unique<RealDecl>(std::move(id), std::move(int_num));
 }

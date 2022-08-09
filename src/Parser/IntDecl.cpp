@@ -13,6 +13,8 @@ std::unique_ptr<IntDecl> IntDecl::parse() {
     // TODO: handle invalid
   }
   auto int_num = IntNumExpr::parse();
-  std::ignore = ParserUtils::get_next_token();
+  if (ParserUtils::get_next_token() != Token::End) {
+    // TODO: handle invalid
+  }
   return std::make_unique<IntDecl>(std::move(id), std::move(int_num));
 }
