@@ -14,7 +14,7 @@ public:
 
   const std::string &get_name() const { return name; }
 
-  auto code_gen() -> llvm::Value * override;
+  auto code_gen() -> llvm::Value * override = 0;
 
   template <typename IdExprT> static std::unique_ptr<IdExprT> parse();
 };
