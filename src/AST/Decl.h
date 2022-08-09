@@ -6,12 +6,7 @@
 #import <memory>
 
 class Decl {
-protected:
-  std::unique_ptr<IdExpr> id;
-
 public:
-  explicit Decl(std::unique_ptr<IdExpr> id) : id(std::move(id)) {}
-
   virtual ~Decl() = default;
 
   virtual auto code_gen() -> void = 0;

@@ -6,6 +6,7 @@
 #import <string>
 
 class IdExpr : public Expr {
+protected:
   std::string name;
 
 public:
@@ -15,7 +16,7 @@ public:
 
   auto code_gen() -> llvm::Value * override;
 
-  static std::unique_ptr<IdExpr> parse();
+  template <typename IdExprT> static std::unique_ptr<IdExprT> parse();
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_IDEXPR_H
