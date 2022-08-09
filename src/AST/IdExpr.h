@@ -1,6 +1,8 @@
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_IDEXPR_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_IDEXPR_H
 
+#import "../Lexer/Lexer.h"
+#import "../Parser/ParserUtils.h"
 #import "Expr.h"
 
 #import <string>
@@ -16,7 +18,16 @@ public:
 
   auto code_gen() -> llvm::Value * override = 0;
 
-  template <typename IdExprT> static std::unique_ptr<IdExprT> parse();
+  template <typename IdExprT> class parse {
+  public:
+    std::unique_ptr<IdExprT> operator()();
+  };
 };
+template <typename IdExprT>
+std::unique_ptr<IdExprT> IdExpr::parse<IdExprT>::operator()() {
+  std::string name = std::move(Lexer::id);
+  std::ignore = ParserUtils::get_next_token();
+  return std::make_unique<IdExprT>(std::move(name));
+}
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_IDEXPR_H

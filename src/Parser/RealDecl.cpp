@@ -5,7 +5,7 @@ std::unique_ptr<RealDecl> RealDecl::parse() {
   if (ParserUtils::get_next_token() != Token::ID) {
     // TODO: handle invalid
   }
-  auto id = IdExpr::parse<RealIdExpr>();
+  auto id = IdExpr::parse<RealIdExpr>()();
   if (ParserUtils::get_next_token() != Token::Assignment) {
     // TODO: handle invalid
   }
