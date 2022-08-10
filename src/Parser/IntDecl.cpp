@@ -5,7 +5,7 @@ std::unique_ptr<IntDecl> IntDecl::parse() {
   if (ParserUtils::get_next_token() != Token::ID) {
     // TODO: handle invalid
   }
-  auto id = IdExpr::parse<IntIdExpr>()();
+  auto id = IdExpr::parse<IntIdExpr>();
   if (ParserUtils::get_next_token() != Token::Assignment) {
     // TODO: handle invalid
   }

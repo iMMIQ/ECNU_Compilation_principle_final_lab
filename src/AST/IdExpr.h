@@ -18,16 +18,7 @@ public:
 
   auto code_gen() -> llvm::Value * override = 0;
 
-  template <typename IdExprT> class parse {
-  public:
-    std::unique_ptr<IdExprT> operator()();
-  };
+  template <typename IdExprT> static std::unique_ptr<IdExprT> parse();
 };
-template <typename IdExprT>
-std::unique_ptr<IdExprT> IdExpr::parse<IdExprT>::operator()() {
-  std::string name = std::move(Lexer::id);
-  std::ignore = ParserUtils::get_next_token();
-  return std::make_unique<IdExprT>(std::move(name));
-}
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_IDEXPR_H
