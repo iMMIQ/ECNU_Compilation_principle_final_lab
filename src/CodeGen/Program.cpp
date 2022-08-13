@@ -1,8 +1,6 @@
 #import "../AST/Program.h"
 
 auto Program::code_gen() -> void {
-  module->setTargetTriple("x86_64-unknown-linux-gnu");
-
   builder->SetInsertPoint(
       llvm::BasicBlock::Create(*context, "entry", main_func));
 
@@ -18,9 +16,12 @@ auto Program::code_gen() -> void {
                               {builder->getInt8Ty()->getPointerTo()}, true));
 
   for (const auto &i : named_values) {
-    auto *value = i.second;
+    auto *load =
+        builder->CreateLoad(llvm::Type::getInt32Ty(*context), i.second);
     auto *format =
         builder->CreateGlobalStringPtr(i.first + ": %d\n", "format_" + i.first);
-    builder->CreateCall(printf_func, {format, value});
+    builder->CreateCall(printf_func, {format, load});
   }
+
+  builder->CreateRetVoid();
 }
