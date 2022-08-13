@@ -6,14 +6,14 @@ std::unique_ptr<IntDecl> IntDecl::parse() {
     // TODO: handle invalid
   }
   auto id = IdExpr::parse<IntIdExpr>();
-  if (ParserUtils::get_next_token() != Token::Assignment) {
+  if (ParserUtils::cur_token != Token::Assignment) {
     // TODO: handle invalid
   }
   if (ParserUtils::get_next_token() != Token::IntNum) {
     // TODO: handle invalid
   }
   auto int_num = IntNumExpr::parse();
-  if (ParserUtils::get_next_token() != Token::End) {
+  if (ParserUtils::cur_token != Token::End) {
     // TODO: handle invalid
   }
   return std::make_unique<IntDecl>(std::move(id), std::move(int_num));
