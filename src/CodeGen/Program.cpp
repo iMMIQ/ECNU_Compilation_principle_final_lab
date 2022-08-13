@@ -16,11 +16,19 @@ auto Program::code_gen() -> void {
                               {builder->getInt8Ty()->getPointerTo()}, true));
 
   for (const auto &i : named_values) {
-    auto *load =
-        builder->CreateLoad(llvm::Type::getInt32Ty(*context), i.second);
-    auto *format =
-        builder->CreateGlobalStringPtr(i.first + ": %d\n", "format_" + i.first);
-    builder->CreateCall(printf_func, {format, load});
+    if (i.second->getType()->getPointerElementType()->isIntegerTy()) {
+      auto *load =
+          builder->CreateLoad(llvm::Type::getInt32Ty(*context), i.second);
+      builder->CreateCall(
+          printf_func,
+          {builder->CreateGlobalStringPtr(i.first + ": %d\n"), load});
+    } else {
+      auto *load =
+          builder->CreateLoad(llvm::Type::getDoubleTy(*context), i.second);
+      builder->CreateCall(
+          printf_func,
+          {builder->CreateGlobalStringPtr(i.first + ": %lf\n"), load});
+    }
   }
 
   builder->CreateRetVoid();
