@@ -3,7 +3,7 @@
 #include "ParserUtils.h"
 
 std::unique_ptr<RealNumExpr> RealNumExpr::parse() {
-  auto result = std::make_unique<RealNumExpr>(Lexer::int_num);
+  auto result = std::make_unique<RealNumExpr>(Lexer::real_num);
   std::ignore = ParserUtils::get_next_token();
   return result;
 }
