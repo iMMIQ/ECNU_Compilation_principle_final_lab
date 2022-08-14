@@ -39,6 +39,8 @@ enum class Token {
   Then,
   // else
   Else,
+  // while
+  While,
   // (
   LeftRoundBracket,
   // )
@@ -85,6 +87,7 @@ private:
       {Token::If, regex("if")},
       {Token::Then, regex("then")},
       {Token::Else, regex("else")},
+      {Token::While, regex("while")},
       {Token::LeftRoundBracket, regex("\\(")},
       {Token::RightRoundBracket, regex("\\)")},
       {Token::LeftCurlyBracket, regex("\\{")},
