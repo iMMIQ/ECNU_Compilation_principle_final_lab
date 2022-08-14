@@ -1,5 +1,6 @@
 #import "../AST/ArithBinaryExpr.h"
 #import "../AST/Program.h"
+#include "Util.h"
 
 auto ArithBinaryExpr::code_gen() -> llvm::Value * {
   auto *l = lhs->code_gen();
@@ -7,17 +8,36 @@ auto ArithBinaryExpr::code_gen() -> llvm::Value * {
   if (!l || !r) {
     return nullptr;
   }
-  if (l->getType()->getPointerElementType()->isIntegerTy() &&
-      r->getType()->getPointerElementType()->isDoubleTy()) {
-    l = Program::builder->CreateBitCast(
+
+  if (l->getType()->isPointerTy()) {
+    if (Util::isIntNum(l)) {
+      l = Program::builder->CreateLoad(
+          llvm::Type::getInt32Ty(*Program::context), l);
+    } else {
+      l = Program::builder->CreateLoad(
+          llvm::Type::getDoubleTy(*Program::context), l);
+    }
+  }
+
+  if (r->getType()->isPointerTy()) {
+    if (Util::isIntNum(r)) {
+      r = Program::builder->CreateLoad(
+          llvm::Type::getInt32Ty(*Program::context), r);
+    } else {
+      r = Program::builder->CreateLoad(
+          llvm::Type::getDoubleTy(*Program::context), r);
+    }
+  }
+
+  if (Util::isIntNum(l) && Util::isDoubleNum(r)) {
+    l = Program::builder->CreateSIToFP(
         l, llvm::Type::getDoubleTy(*Program::context));
-  } else if (r->getType()->getPointerElementType()->isIntegerTy() &&
-             l->getType()->getPointerElementType()->isDoubleTy()) {
-    r = Program::builder->CreateBitCast(
+  } else if (Util::isDoubleNum(l) && Util::isIntNum(r)) {
+    r = Program::builder->CreateSIToFP(
         r, llvm::Type::getDoubleTy(*Program::context));
   }
 
-  if (l->getType()->getPointerElementType()->isIntegerTy()) {
+  if (Util::isIntNum(l)) {
     switch (op) {
     case Token::Plus:
       return Program::builder->CreateAdd(l, r);
