@@ -1,4 +1,5 @@
 #import "Lexer.h"
+#import "../AST/Program.h"
 
 #import <iostream>
 
@@ -6,7 +7,7 @@ using std::cin;
 
 Token Lexer::get_token() {
   string s;
-  cin >> s;
+  *Program::in >> s;
 
   for (const auto &p : pattern) {
     if (std::regex_match(s, p.second)) {
