@@ -13,3 +13,5 @@ template <typename IdExprT> std::unique_ptr<IdExprT> IdExpr::parse() {
 template std::unique_ptr<IntIdExpr> IdExpr::parse();
 
 template std::unique_ptr<RealIdExpr> IdExpr::parse();
+
+template std::unique_ptr<IdExpr> IdExpr::parse();

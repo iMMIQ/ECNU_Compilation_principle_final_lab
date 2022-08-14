@@ -8,7 +8,7 @@ auto Program::code_gen() -> void {
     decl->code_gen();
   }
 
-  // compound_stmt->code_gen();
+  compound_stmt->code_gen();
 
   auto printf_func = module->getOrInsertFunction(
       "printf",

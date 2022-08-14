@@ -1,14 +1,8 @@
 #include "../AST/AssgStmt.h"
-#include "../AST/IntIdExpr.h"
-#include "../AST/RealIdExpr.h"
+#include <iostream>
 std::unique_ptr<AssgStmt> AssgStmt::parse() {
-  std::unique_ptr<IdExpr> id;
-  if (ParserUtils::cur_token == Token::Int) {
-    id = IdExpr::parse<IntIdExpr>();
-  } else {
-    id = IdExpr::parse<RealIdExpr>();
-  }
-  if (ParserUtils::get_next_token() != Token::Assignment) {
+  std::unique_ptr<IdExpr> id = IdExpr::parse<IdExpr>();
+  if (ParserUtils::cur_token != Token::Assignment) {
     // TODO: handle invalid
   }
   std::ignore = ParserUtils::get_next_token();

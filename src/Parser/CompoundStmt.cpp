@@ -10,5 +10,6 @@ std::unique_ptr<CompoundStmt> CompoundStmt::parse() {
     }
     result.emplace_back(std::move(stmt));
   }
+  std::ignore = ParserUtils::get_next_token();
   return std::make_unique<CompoundStmt>(std::move(result));
 }

@@ -64,10 +64,8 @@ std::unique_ptr<Expr> ParserUtils::parse_expr_paren() {
 }
 std::unique_ptr<Expr> ParserUtils::parse_expr_primary() {
   switch (cur_token) {
-  case Token::Int:
-    return IdExpr::parse<IntIdExpr>();
-  case Token::Real:
-    return IdExpr::parse<RealIdExpr>();
+  case Token::ID:
+    return IdExpr::parse<IdExpr>();
   case Token::IntNum:
     return IntNumExpr::parse();
   case Token::RealNum:
@@ -118,8 +116,7 @@ ParserUtils::parse_binary_operator_rhs(int expr_prec, std::unique_ptr<Expr> lhs,
 }
 std::unique_ptr<Stmt> ParserUtils::parse_stmt_primary() {
   switch (cur_token) {
-  case Token::Int:
-  case Token::Real:
+  case Token::ID:
     return AssgStmt::parse();
   case Token::If:
     return IfStmt::parse();
