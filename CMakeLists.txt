@@ -22,6 +22,8 @@ llvm_map_components_to_libnames(llvm_libs
         Support
         native)
 
-add_executable(ECNU_Compilation_principle_final_lab src/main.cpp src/Lexer/Lexer.cpp src/Lexer/Lexer.h src/AST/Program.h src/AST/Expr.h src/AST/IntNumExpr.h src/AST/RealNumExpr.h src/AST/IdExpr.h src/AST/BinaryExpr.h src/AST/BoolBinaryExpr.h src/AST/ArithBinaryExpr.h src/Parser/BoolBinaryExpr.cpp src/AST/Stmt.h src/AST/IfStmt.h src/AST/AssgStmt.h src/AST/CompoundStmt.h src/AST/Decl.h src/AST/IntDecl.h src/AST/RealDecl.h src/CodeGen/IntDecl.cpp src/CodeGen/RealDecl.cpp src/CodeGen/AssgStmt.cpp src/CodeGen/CompoundStmt.cpp src/CodeGen/IfStmt.cpp src/CodeGen/ArithBinaryExpr.cpp src/CodeGen/BoolBinaryExpr.cpp src/CodeGen/IntNumExpr.cpp src/CodeGen/Program.cpp src/CodeGen/RealNumExpr.cpp src/Parser/IntNumExpr.cpp src/Parser/ParserUtils.h src/Parser/ParserUtils.cpp src/Parser/RealNumExpr.cpp src/Parser/IdExpr.cpp src/Parser/IntDecl.cpp src/Parser/RealDecl.cpp src/Parser/Program.cpp src/AST/IntIdExpr.h src/AST/RealIdExpr.h src/CodeGen/IntIdExpr.cpp src/CodeGen/RealIdExpr.cpp src/AST/WhileStmt.h src/CodeGen/WhileStmt.cpp)
+file(GLOB_RECURSE sources_cpp CONFIGURE_DEPENDS "src/*.cpp")
+file(GLOB_RECURSE sources_h CONFIGURE_DEPENDS "src/*.h")
+add_executable(ECNU_Compilation_principle_final_lab ${sources_cpp} ${sources_h})
 
 target_link_libraries(ECNU_Compilation_principle_final_lab ${llvm_libs})

@@ -15,6 +15,8 @@ public:
         else_stmt(std::move(else_stmt)) {}
 
   auto code_gen() -> void override;
+
+  static std::unique_ptr<IfStmt> parse();
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_IFSTMT_H

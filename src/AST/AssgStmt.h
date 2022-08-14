@@ -15,6 +15,8 @@ public:
       : id(std::move(id)), arith_expr(std::move(arith_expr)) {}
 
   auto code_gen() -> void override;
+
+  static std::unique_ptr<AssgStmt> parse();
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_ASSGSTMT_H

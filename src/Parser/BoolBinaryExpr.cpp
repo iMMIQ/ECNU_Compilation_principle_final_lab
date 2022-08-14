@@ -1,7 +1,7 @@
 #import "../AST/BoolBinaryExpr.h"
 #include "ParserUtils.h"
 std::unique_ptr<BoolBinaryExpr> BoolBinaryExpr::parse() {
-  auto lhs = ParserUtils::parse_primary();
+  auto lhs = ParserUtils::parse_expr_primary();
   if (!lhs) {
     return nullptr;
   }

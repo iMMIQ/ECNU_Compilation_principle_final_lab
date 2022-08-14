@@ -13,6 +13,8 @@ public:
       : bool_expr(std::move(bool_expr)), stmt(std::move(stmt)) {}
 
   auto code_gen() -> void override;
+
+  static std::unique_ptr<WhileStmt> parse();
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_WHILESTMT_H

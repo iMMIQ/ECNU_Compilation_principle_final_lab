@@ -1,12 +1,16 @@
 #include "ParserUtils.h"
 #include "../AST/ArithBinaryExpr.h"
+#include "../AST/AssgStmt.h"
 #include "../AST/BinaryExpr.h"
 #include "../AST/BoolBinaryExpr.h"
+#include "../AST/CompoundStmt.h"
 #include "../AST/IdExpr.h"
+#include "../AST/IfStmt.h"
 #include "../AST/IntIdExpr.h"
 #include "../AST/IntNumExpr.h"
 #include "../AST/RealIdExpr.h"
 #include "../AST/RealNumExpr.h"
+#include "../AST/WhileStmt.h"
 
 std::map<Token, int> ParserUtils::binary_operator_precedence =
     init_binary_operator_precedence();
@@ -46,7 +50,7 @@ int ParserUtils::get_token_precedence(Token cur_token) {
   // TODO: handle invalid
   return -1;
 }
-std::unique_ptr<Expr> ParserUtils::parse_paren() {
+std::unique_ptr<Expr> ParserUtils::parse_expr_paren() {
   std::ignore = get_next_token();
   auto ret = ArithBinaryExpr::parse();
   if (!ret) {
@@ -58,7 +62,7 @@ std::unique_ptr<Expr> ParserUtils::parse_paren() {
   std::ignore = get_next_token();
   return ret;
 }
-std::unique_ptr<Expr> ParserUtils::parse_primary() {
+std::unique_ptr<Expr> ParserUtils::parse_expr_primary() {
   switch (cur_token) {
   case Token::Int:
     return IdExpr::parse<IntIdExpr>();
@@ -69,7 +73,7 @@ std::unique_ptr<Expr> ParserUtils::parse_primary() {
   case Token::RealNum:
     return RealNumExpr::parse();
   case Token::LeftRoundBracket:
-    return parse_paren();
+    return parse_expr_paren();
   default:
     // TODO: handle invalid
     return nullptr;
@@ -91,7 +95,7 @@ ParserUtils::parse_binary_operator_rhs(int expr_prec, std::unique_ptr<Expr> lhs,
       }
     }
     std::ignore = get_next_token();
-    auto rhs = parse_primary();
+    auto rhs = parse_expr_primary();
     if (!rhs) {
       return nullptr;
     }
@@ -112,6 +116,22 @@ ParserUtils::parse_binary_operator_rhs(int expr_prec, std::unique_ptr<Expr> lhs,
     }
   }
 }
+std::unique_ptr<Stmt> ParserUtils::parse_stmt_primary() {
+  switch (cur_token) {
+  case Token::Int:
+  case Token::Real:
+    return AssgStmt::parse();
+  case Token::If:
+    return IfStmt::parse();
+  case Token::While:
+    return WhileStmt::parse();
+  case Token::LeftCurlyBracket:
+    return CompoundStmt::parse();
+  default:
+    // TODO: handle Invalid
+    return nullptr;
+  }
+}
 template <class destinationT, typename sourceT>
 std::unique_ptr<destinationT>
 ParserUtils::dynamic_unique_cast(std::unique_ptr<sourceT> &&source) {
@@ -123,3 +143,7 @@ ParserUtils::dynamic_unique_cast(std::unique_ptr<sourceT> &&source) {
   source.release();
   return std::unique_ptr<destinationT>(dest_ptr);
 }
+template std::unique_ptr<ArithBinaryExpr>
+ParserUtils::dynamic_unique_cast(std::unique_ptr<Expr> &&source);
+template std::unique_ptr<BoolBinaryExpr>
+ParserUtils::dynamic_unique_cast(std::unique_ptr<Expr> &&source);

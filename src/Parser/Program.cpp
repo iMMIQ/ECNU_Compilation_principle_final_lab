@@ -18,6 +18,9 @@ void Program::parse() {
         Program::push_back(std::move(decl));
       }
     }
-    std::ignore = ParserUtils::get_next_token();
   }
+  if (ParserUtils::cur_token != Token::LeftCurlyBracket) {
+    // TODO: handle invalid
+  }
+  compound_stmt = CompoundStmt::parse();
 }

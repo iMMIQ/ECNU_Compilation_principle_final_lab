@@ -1,7 +1,7 @@
 #include "../AST/ArithBinaryExpr.h"
 #include "ParserUtils.h"
 std::unique_ptr<ArithBinaryExpr> ArithBinaryExpr::parse() {
-  auto lhs = ParserUtils::parse_primary();
+  auto lhs = ParserUtils::parse_expr_primary();
   if (!lhs) {
     return nullptr;
   }
