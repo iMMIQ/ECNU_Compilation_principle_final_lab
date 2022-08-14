@@ -14,7 +14,7 @@ public:
       : bool_expr(std::move(bool_expr)), then_stmt(std::move(then_stmt)),
         else_stmt(std::move(else_stmt)) {}
 
-  auto code_gen() -> llvm::Value * override;
+  auto code_gen() -> void override;
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_IFSTMT_H

@@ -16,7 +16,7 @@ public:
     stmts.emplace_back(std::forward<Args>(args)...);
   }
 
-  auto code_gen() -> llvm::Value * override;
+  auto code_gen() -> void override;
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_COMPOUNDSTMT_H
