@@ -7,11 +7,10 @@
 
 class AssgStmt : public Stmt {
   std::unique_ptr<IdExpr> id;
-  std::unique_ptr<ArithBinaryExpr> arith_expr;
+  std::unique_ptr<Expr> arith_expr;
 
 public:
-  AssgStmt(std::unique_ptr<IdExpr> id,
-           std::unique_ptr<ArithBinaryExpr> arith_expr)
+  AssgStmt(std::unique_ptr<IdExpr> id, std::unique_ptr<Expr> arith_expr)
       : id(std::move(id)), arith_expr(std::move(arith_expr)) {}
 
   auto code_gen() -> void override;
