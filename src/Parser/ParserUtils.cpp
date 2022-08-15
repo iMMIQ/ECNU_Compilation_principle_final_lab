@@ -129,4 +129,3 @@ std::unique_ptr<Stmt> ParserUtils::parse_stmt_primary() {
     return nullptr;
   }
 }
-

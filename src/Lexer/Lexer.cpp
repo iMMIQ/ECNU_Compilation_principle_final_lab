@@ -7,7 +7,9 @@ using std::cin;
 
 Token Lexer::get_token() {
   string s;
-  *Program::in >> s;
+  if (!(*Program::in >> s)) {
+    return Token::Eof;
+  }
 
   for (const auto &p : pattern) {
     if (std::regex_match(s, p.second)) {

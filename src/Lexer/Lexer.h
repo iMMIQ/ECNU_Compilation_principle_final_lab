@@ -60,7 +60,9 @@ enum class Token {
   // ==
   Equal,
   // 异常token
-  Error
+  Error,
+  // EOF
+  Eof,
 };
 
 class Lexer {
