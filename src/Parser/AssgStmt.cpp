@@ -1,5 +1,4 @@
 #include "../AST/AssgStmt.h"
-#include <iostream>
 std::unique_ptr<AssgStmt> AssgStmt::parse() {
   std::unique_ptr<IdExpr> id = IdExpr::parse<IdExpr>();
   if (ParserUtils::cur_token != Token::Assignment) {

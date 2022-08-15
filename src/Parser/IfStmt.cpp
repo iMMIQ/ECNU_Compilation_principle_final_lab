@@ -23,6 +23,7 @@ std::unique_ptr<IfStmt> IfStmt::parse() {
   if (ParserUtils::cur_token != Token::Else) {
     // TODO: handle invalid
   }
+  std::ignore = ParserUtils::get_next_token();
   auto else_stmt = ParserUtils::parse_stmt_primary();
   if (else_stmt == nullptr) {
     // TODO: handle invalid
