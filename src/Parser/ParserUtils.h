@@ -24,9 +24,6 @@ public:
   parse_binary_operator_rhs(int expr_prec, std::unique_ptr<Expr> lhs,
                             int bool_binary_operator_counter);
   static std::unique_ptr<Stmt> parse_stmt_primary();
-  template <class destinationT, typename sourceT>
-  static std::unique_ptr<destinationT>
-  dynamic_unique_cast(std::unique_ptr<sourceT> &&source);
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_PARSERUTILS_H

@@ -129,18 +129,4 @@ std::unique_ptr<Stmt> ParserUtils::parse_stmt_primary() {
     return nullptr;
   }
 }
-template <class destinationT, typename sourceT>
-std::unique_ptr<destinationT>
-ParserUtils::dynamic_unique_cast(std::unique_ptr<sourceT> &&source) {
-  if (!source) {
-    return std::unique_ptr<destinationT>();
-  }
-  destinationT *dest_ptr = &dynamic_cast<destinationT &>(*source.get());
 
-  source.release();
-  return std::unique_ptr<destinationT>(dest_ptr);
-}
-template std::unique_ptr<ArithBinaryExpr>
-ParserUtils::dynamic_unique_cast(std::unique_ptr<Expr> &&source);
-template std::unique_ptr<BoolBinaryExpr>
-ParserUtils::dynamic_unique_cast(std::unique_ptr<Expr> &&source);
