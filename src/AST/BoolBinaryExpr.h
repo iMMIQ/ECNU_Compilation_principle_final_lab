@@ -11,6 +11,6 @@ public:
 
   auto code_gen() -> llvm::Value * override;
 
-  static std::unique_ptr<BoolBinaryExpr> parse();
+  static std::unique_ptr<Expr> parse();
 };
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_BOOLBINARYEXPR_H

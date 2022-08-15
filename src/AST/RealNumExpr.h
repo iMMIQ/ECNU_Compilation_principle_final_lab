@@ -11,7 +11,7 @@ public:
 
   auto code_gen() -> llvm::Value * override;
 
-  static std::unique_ptr<RealNumExpr> parse();
+  static std::unique_ptr<Expr> parse();
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_REALNUMEXPR_H

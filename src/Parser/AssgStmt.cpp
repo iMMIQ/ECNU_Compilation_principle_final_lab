@@ -1,6 +1,6 @@
 #include "../AST/AssgStmt.h"
-std::unique_ptr<AssgStmt> AssgStmt::parse() {
-  std::unique_ptr<IdExpr> id = IdExpr::parse<IdExpr>();
+std::unique_ptr<Stmt> AssgStmt::parse() {
+  auto id = IdExpr::parse<IdExpr>();
   if (ParserUtils::cur_token != Token::Assignment) {
     // TODO: handle invalid
   }

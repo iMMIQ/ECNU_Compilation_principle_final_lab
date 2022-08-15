@@ -15,7 +15,7 @@ public:
 
   auto code_gen() -> void override;
 
-  static std::unique_ptr<AssgStmt> parse();
+  static std::unique_ptr<Stmt> parse();
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_ASSGSTMT_H

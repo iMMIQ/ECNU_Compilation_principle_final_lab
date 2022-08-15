@@ -1,6 +1,6 @@
 #include "../AST/CompoundStmt.h"
 #include "ParserUtils.h"
-std::unique_ptr<CompoundStmt> CompoundStmt::parse() {
+std::unique_ptr<Stmt> CompoundStmt::parse() {
   std::ignore = ParserUtils::get_next_token();
   CompoundStmt result;
   while (ParserUtils::cur_token != Token::RightCurlyBracket) {

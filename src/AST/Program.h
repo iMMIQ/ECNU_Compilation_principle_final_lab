@@ -16,7 +16,7 @@
 
 class Program {
   static inline std::vector<std::unique_ptr<Decl>> decls;
-  static inline std::unique_ptr<CompoundStmt> compound_stmt;
+  static inline std::unique_ptr<Stmt> compound_stmt;
 
 public:
   static inline auto context = std::make_unique<llvm::LLVMContext>();
@@ -35,10 +35,6 @@ public:
   }
 
   static void parse();
-
-  static void set_compound_stmt(std::unique_ptr<CompoundStmt> _compound_stmt) {
-    swap(Program::compound_stmt, _compound_stmt);
-  }
 
   static auto code_gen() -> void;
 };

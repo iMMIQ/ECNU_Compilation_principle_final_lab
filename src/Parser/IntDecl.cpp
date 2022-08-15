@@ -1,7 +1,7 @@
 #include "../AST/IntDecl.h"
 #include "ParserUtils.h"
 
-std::unique_ptr<IntDecl> IntDecl::parse() {
+std::unique_ptr<Decl> IntDecl::parse() {
   if (ParserUtils::get_next_token() != Token::ID) {
     // TODO: handle invalid
   }

@@ -1,7 +1,7 @@
 #include "../AST/RealDecl.h"
 #include "ParserUtils.h"
 
-std::unique_ptr<RealDecl> RealDecl::parse() {
+std::unique_ptr<Decl> RealDecl::parse() {
   if (ParserUtils::get_next_token() != Token::ID) {
     // TODO: handle invalid
   }

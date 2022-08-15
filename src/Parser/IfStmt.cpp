@@ -1,6 +1,6 @@
 #include "../AST/IfStmt.h"
 #include "ParserUtils.h"
-std::unique_ptr<IfStmt> IfStmt::parse() {
+std::unique_ptr<Stmt> IfStmt::parse() {
   if (ParserUtils::get_next_token() != Token::LeftRoundBracket) {
     // TODO: handle invalid
   }

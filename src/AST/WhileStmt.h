@@ -4,17 +4,16 @@
 #include "BoolBinaryExpr.h"
 #include "Stmt.h"
 class WhileStmt : public Stmt {
-  std::unique_ptr<BoolBinaryExpr> bool_expr;
+  std::unique_ptr<Expr> bool_expr;
   std::unique_ptr<Stmt> stmt;
 
 public:
-  WhileStmt(std::unique_ptr<BoolBinaryExpr> bool_expr,
-            std::unique_ptr<Stmt> stmt)
+  WhileStmt(std::unique_ptr<Expr> bool_expr, std::unique_ptr<Stmt> stmt)
       : bool_expr(std::move(bool_expr)), stmt(std::move(stmt)) {}
 
   auto code_gen() -> void override;
 
-  static std::unique_ptr<WhileStmt> parse();
+  static std::unique_ptr<Stmt> parse();
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_WHILESTMT_H
