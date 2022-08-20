@@ -21,7 +21,9 @@ int main(int argc, char **argv) {
                           "  -O            optimize\n"
                           "  -C            output bitcode IR\n"
                           "  -S            output text IR\n"
-                          "  -s            output assembly\n");
+                          "  -s            output assembly\n"
+                          "  -help         show help message\n"
+                          "  -version      show version\n");
   google::SetVersionString("v1.0.0");
 
   google::ParseCommandLineFlags(&argc, &argv, true);
