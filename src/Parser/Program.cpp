@@ -23,4 +23,7 @@ void Program::parse() {
     // TODO: handle invalid
   }
   compound_stmt = CompoundStmt::parse();
+  if (ParserUtils::cur_token != Token::Eof) {
+    // TODO: handle invalid
+  }
 }
