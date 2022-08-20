@@ -5,10 +5,10 @@
 
 DEFINE_string(c, "", "source file");
 DEFINE_string(o, "", "output file");
-// DEFINE_bool(O, false, "optimize");
-// DEFINE_bool(C, false, "output bitcode IR");
-// DEFINE_bool(S, true, "output text IR");
-// DEFINE_bool(s, false, "output assembly");
+DEFINE_bool(O, false, "optimize");
+DEFINE_bool(C, false, "output bitcode IR");
+DEFINE_bool(S, false, "output text IR");
+DEFINE_bool(s, false, "output assembly");
 
 int main(int argc, char **argv) {
   google::SetUsageMessage("Usage: ./compiler [options]\n"
@@ -56,6 +56,33 @@ int main(int argc, char **argv) {
   llvm::raw_fd_ostream out(FLAGS_o, EC);
 
   Program::module->print(out, nullptr);
+
+  if (FLAGS_C + FLAGS_S + FLAGS_s > 1) {
+    std::cerr << "only one of -C, -S, -s can be specified" << std::endl;
+    return 1;
+  }
+
+  if (FLAGS_O) {
+    auto tmp = "opt -O1 -S " + FLAGS_o + " -o " + FLAGS_o;
+    system(tmp.data());
+  }
+
+  if (FLAGS_C) {
+    auto tmp = "llvm-as " + FLAGS_o + " -o " + FLAGS_o;
+    system(tmp.data());
+  }
+
+  if (FLAGS_s) {
+    auto tmp = "llc " + FLAGS_o + " -o " + FLAGS_o;
+    system(tmp.data());
+  }
+
+  if (!FLAGS_S && !FLAGS_C && !FLAGS_s) {
+    auto tmp = "llvm-link " + FLAGS_o + " -o " + FLAGS_o;
+    system(tmp.data());
+    tmp = "chmod +x " + FLAGS_o;
+    system(tmp.data());
+  }
 
   return 0;
 }

@@ -23,5 +23,7 @@ Token Lexer::get_token() {
       return p.first;
     }
   }
+
+  llvm::errs() << "Unknown token: " << s << "\n";
   return Token::Error;
 }
