@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
   google::ParseCommandLineFlags(&argc, &argv, true);
   if (FLAGS_c.empty()) {
     google::ShowUsageWithFlagsRestrict(argv[0], "compiler");
-    return 0;
+    return 1;
   }
 
   std::ifstream in(FLAGS_c);
