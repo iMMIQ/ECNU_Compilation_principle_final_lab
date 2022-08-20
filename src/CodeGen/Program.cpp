@@ -1,4 +1,4 @@
-#import "../AST/Program.h"
+#include "../AST/Program.h"
 
 auto Program::code_gen() -> void {
   builder->SetInsertPoint(

@@ -1,4 +1,4 @@
-#import "../AST/IntNumExpr.h"
+#include "../AST/IntNumExpr.h"
 #include "../Lexer/Lexer.h"
 #include "ParserUtils.h"
 

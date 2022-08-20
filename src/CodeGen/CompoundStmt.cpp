@@ -1,4 +1,4 @@
-#import "../AST/CompoundStmt.h"
+#include "../AST/CompoundStmt.h"
 
 auto CompoundStmt::code_gen() -> void {
   for (const auto &stmt : stmts) {

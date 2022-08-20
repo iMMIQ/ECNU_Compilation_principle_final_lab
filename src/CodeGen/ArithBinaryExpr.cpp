@@ -1,5 +1,5 @@
-#import "../AST/ArithBinaryExpr.h"
-#import "../AST/Program.h"
+#include "../AST/ArithBinaryExpr.h"
+#include "../AST/Program.h"
 #include "Util.h"
 
 auto ArithBinaryExpr::code_gen() -> llvm::Value * {

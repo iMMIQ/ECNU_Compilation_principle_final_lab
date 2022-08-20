@@ -1,18 +1,18 @@
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_PROGRAM_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_PROGRAM_H
 
-#import "CompoundStmt.h"
-#import "Decl.h"
+#include "CompoundStmt.h"
+#include "Decl.h"
 
-#import <llvm/IR/Function.h>
-#import <llvm/IR/IRBuilder.h>
-#import <llvm/IR/LLVMContext.h>
-#import <llvm/IR/Module.h>
-#import <llvm/IR/Value.h>
+#include <llvm/IR/Function.h>
+#include <llvm/IR/IRBuilder.h>
+#include <llvm/IR/LLVMContext.h>
+#include <llvm/IR/Module.h>
+#include <llvm/IR/Value.h>
 
-#import <iostream>
-#import <map>
-#import <memory>
+#include <iostream>
+#include <map>
+#include <memory>
 
 class Program {
   static inline std::vector<std::unique_ptr<Decl>> decls;

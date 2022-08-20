@@ -1,9 +1,9 @@
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_REALDECL_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_REALDECL_H
 
-#import "Decl.h"
+#include "Decl.h"
 #include "RealIdExpr.h"
-#import "RealNumExpr.h"
+#include "RealNumExpr.h"
 
 class RealDecl : public Decl {
   std::unique_ptr<IdExpr> id;

@@ -1,5 +1,5 @@
-#import "../AST/RealDecl.h"
-#import "../AST/Program.h"
+#include "../AST/RealDecl.h"
+#include "../AST/Program.h"
 
 auto RealDecl::code_gen() -> void {
   Program::named_values[id->get_name()] = id->code_gen();

@@ -1,5 +1,5 @@
-#import "../AST/IntDecl.h"
-#import "../AST/Program.h"
+#include "../AST/IntDecl.h"
+#include "../AST/Program.h"
 
 auto IntDecl::code_gen() -> void {
   Program::named_values[id->get_name()] = id->code_gen();

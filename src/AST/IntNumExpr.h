@@ -1,7 +1,7 @@
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_INTNUMEXPR_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_INTNUMEXPR_H
 
-#import "Expr.h"
+#include "Expr.h"
 
 class IntNumExpr : public Expr {
   int value;

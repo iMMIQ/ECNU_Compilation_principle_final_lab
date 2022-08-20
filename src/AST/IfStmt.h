@@ -1,8 +1,8 @@
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_IFSTMT_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_IFSTMT_H
 
-#import "BoolBinaryExpr.h"
-#import "Stmt.h"
+#include "BoolBinaryExpr.h"
+#include "Stmt.h"
 
 class IfStmt : public Stmt {
   std::unique_ptr<Expr> bool_expr;

@@ -1,5 +1,6 @@
 #include "../AST/WhileStmt.h"
 #include "ParserUtils.h"
+
 std::unique_ptr<Stmt> WhileStmt::parse() {
   if (ParserUtils::get_next_token() != Token::LeftRoundBracket) {
     // TODO: handle invalid

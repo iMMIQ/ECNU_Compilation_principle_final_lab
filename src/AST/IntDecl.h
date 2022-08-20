@@ -1,9 +1,9 @@
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_INTDECL_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_INTDECL_H
 
-#import "Decl.h"
+#include "Decl.h"
 #include "IntIdExpr.h"
-#import "IntNumExpr.h"
+#include "IntNumExpr.h"
 
 class IntDecl : public Decl {
   std::unique_ptr<IdExpr> id;

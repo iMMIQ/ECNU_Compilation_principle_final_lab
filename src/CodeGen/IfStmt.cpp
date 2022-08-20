@@ -1,5 +1,5 @@
-#import "../AST/IfStmt.h"
-#import "../AST/Program.h"
+#include "../AST/IfStmt.h"
+#include "../AST/Program.h"
 
 auto IfStmt::code_gen() -> void {
   llvm::Value *cond = bool_expr->code_gen();

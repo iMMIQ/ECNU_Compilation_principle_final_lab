@@ -1,13 +1,9 @@
-//
-// Created by zzm on 22-8-9.
-//
-
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_PARSERUTILS_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_PARSERUTILS_H
 
 #include "../AST/Expr.h"
 #include "../AST/Stmt.h"
-#import "../Lexer/Lexer.h"
+#include "../Lexer/Lexer.h"
 
 class ParserUtils {
 public:

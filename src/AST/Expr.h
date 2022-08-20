@@ -1,7 +1,7 @@
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_EXPR_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_EXPR_H
 
-#import <llvm/IR/Value.h>
+#include <llvm/IR/Value.h>
 
 class Expr {
 public:

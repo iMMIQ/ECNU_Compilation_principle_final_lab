@@ -1,9 +1,9 @@
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_ASSGSTMT_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_ASSGSTMT_H
 
-#import "ArithBinaryExpr.h"
-#import "IdExpr.h"
-#import "Stmt.h"
+#include "ArithBinaryExpr.h"
+#include "IdExpr.h"
+#include "Stmt.h"
 
 class AssgStmt : public Stmt {
   std::unique_ptr<IdExpr> id;

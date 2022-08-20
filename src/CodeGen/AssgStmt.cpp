@@ -1,5 +1,5 @@
-#import "../AST/AssgStmt.h"
-#import "../AST/Program.h"
+#include "../AST/AssgStmt.h"
+#include "../AST/Program.h"
 #include "Util.h"
 
 auto AssgStmt::code_gen() -> void {

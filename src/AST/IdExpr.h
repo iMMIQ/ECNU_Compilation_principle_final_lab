@@ -1,11 +1,11 @@
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_IDEXPR_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_IDEXPR_H
 
-#import "../Lexer/Lexer.h"
-#import "../Parser/ParserUtils.h"
-#import "Expr.h"
+#include "../Lexer/Lexer.h"
+#include "../Parser/ParserUtils.h"
+#include "Expr.h"
 
-#import <string>
+#include <string>
 
 class IdExpr : public Expr {
 protected:

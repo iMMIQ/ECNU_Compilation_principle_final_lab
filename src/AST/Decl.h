@@ -1,9 +1,9 @@
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_DECL_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_DECL_H
 
-#import "IdExpr.h"
+#include "IdExpr.h"
 
-#import <memory>
+#include <memory>
 
 class Decl {
 public:

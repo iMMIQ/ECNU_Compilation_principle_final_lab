@@ -1,6 +1,6 @@
-#import "../AST/BoolBinaryExpr.h"
-#import "../AST/Program.h"
-#import "Util.h"
+#include "../AST/BoolBinaryExpr.h"
+#include "../AST/Program.h"
+#include "Util.h"
 
 auto BoolBinaryExpr::code_gen() -> llvm::Value * {
   auto *l = lhs->code_gen();

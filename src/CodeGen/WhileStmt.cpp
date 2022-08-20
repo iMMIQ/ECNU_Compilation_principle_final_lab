@@ -1,5 +1,5 @@
-#import "../AST/WhileStmt.h"
-#import "../AST/Program.h"
+#include "../AST/WhileStmt.h"
+#include "../AST/Program.h"
 
 auto WhileStmt::code_gen() -> void {
   auto func = Program::builder->GetInsertBlock()->getParent();

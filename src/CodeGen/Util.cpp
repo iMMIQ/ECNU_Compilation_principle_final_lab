@@ -1,6 +1,6 @@
 #include "Util.h"
 
-#include "llvm/IR/Type.h"
+#include <llvm/IR/Type.h>
 
 auto Util::isIntNum(llvm::Value *v) -> bool {
   if (v->getType()->isIntegerTy()) {

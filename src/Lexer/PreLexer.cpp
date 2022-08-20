@@ -1,4 +1,5 @@
 #include "PreLexer.h"
+
 #include <vector>
 
 auto PreLexer::addSpace(std::string &s) -> void {

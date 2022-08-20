@@ -1,10 +1,10 @@
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_BINARYEXPR_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_BINARYEXPR_H
 
-#import "../Lexer/Lexer.h"
-#import "Expr.h"
+#include "../Lexer/Lexer.h"
+#include "Expr.h"
 
-#import <memory>
+#include <memory>
 
 class BinaryExpr : public Expr {
 protected:

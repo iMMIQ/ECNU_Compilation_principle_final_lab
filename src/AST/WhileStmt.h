@@ -3,6 +3,7 @@
 
 #include "BoolBinaryExpr.h"
 #include "Stmt.h"
+
 class WhileStmt : public Stmt {
   std::unique_ptr<Expr> bool_expr;
   std::unique_ptr<Stmt> stmt;

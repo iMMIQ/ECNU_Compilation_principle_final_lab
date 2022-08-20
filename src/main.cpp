@@ -1,7 +1,9 @@
 #include "AST/Program.h"
 #include "Lexer/PreLexer.h"
-#include <fstream>
+
 #include <gflags/gflags.h>
+
+#include <fstream>
 
 DEFINE_string(c, "", "source file");
 DEFINE_string(o, "", "output file");
@@ -12,7 +14,7 @@ DEFINE_bool(s, false, "output assembly");
 
 int main(int argc, char **argv) {
   google::SetUsageMessage("Usage: ./compiler [options]\n"
-                          "Default output text IR\n"
+                          "Generates binary executables by default\n"
                           "Options:\n"
                           "  -c <file>     source file\n"
                           "  -o <file>     output file\n"

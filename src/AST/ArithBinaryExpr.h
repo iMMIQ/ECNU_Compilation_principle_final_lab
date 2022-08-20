@@ -1,7 +1,7 @@
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_ARITHBINARYEXPR_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_ARITHBINARYEXPR_H
 
-#import "BinaryExpr.h"
+#include "BinaryExpr.h"
 
 class ArithBinaryExpr : public BinaryExpr {
 public:

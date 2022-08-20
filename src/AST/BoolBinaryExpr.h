@@ -1,7 +1,7 @@
 #ifndef ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_BOOLBINARYEXPR_H
 #define ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_BOOLBINARYEXPR_H
 
-#import "BinaryExpr.h"
+#include "BinaryExpr.h"
 
 class BoolBinaryExpr : public BinaryExpr {
 public:

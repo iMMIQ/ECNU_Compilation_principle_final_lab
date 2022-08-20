@@ -1,9 +1,5 @@
-#import "Lexer.h"
-#import "../AST/Program.h"
-
-#import <iostream>
-
-using std::cin;
+#include "Lexer.h"
+#include "../AST/Program.h"
 
 Token Lexer::get_token() {
   string s;
