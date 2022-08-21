@@ -68,24 +68,34 @@ int main(int argc, char **argv) {
 
   if (FLAGS_O) {
     auto tmp = "opt -O1 -S " + FLAGS_o + " -o " + FLAGS_o;
-    system(tmp.data());
+    if (system(tmp.data())) {
+      return 1;
+    }
   }
 
   if (FLAGS_C) {
     auto tmp = "llvm-as " + FLAGS_o + " -o " + FLAGS_o;
-    system(tmp.data());
+    if (system(tmp.data())) {
+      return 1;
+    }
   }
 
   if (FLAGS_s) {
     auto tmp = "llc " + FLAGS_o + " -o " + FLAGS_o;
-    system(tmp.data());
+    if (system(tmp.data())) {
+      return 1;
+    }
   }
 
   if (!FLAGS_S && !FLAGS_C && !FLAGS_s) {
     auto tmp = "llvm-link " + FLAGS_o + " -o " + FLAGS_o;
-    system(tmp.data());
+    if (system(tmp.data())) {
+      return 1;
+    }
     tmp = "chmod +x " + FLAGS_o;
-    system(tmp.data());
+    if (system(tmp.data())) {
+      return 1;
+    }
   }
 
   return 0;
