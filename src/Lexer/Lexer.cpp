@@ -21,5 +21,5 @@ auto Lexer::get_token() -> std::pair<Token, std::string> {
   }
 
   llvm::errs() << "Unknown token: " << s << "\n";
-  return {Token::Error, ""};
+  return {Token::Error, s};
 }
