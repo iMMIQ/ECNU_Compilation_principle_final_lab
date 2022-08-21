@@ -1,10 +1,10 @@
 #include "Lexer.h"
 #include "../AST/Program.h"
 
-Token Lexer::get_token() {
+auto Lexer::get_token() -> std::pair<Token, std::string> {
   string s;
   if (!(*Program::in >> s)) {
-    return Token::Eof;
+    return {Token::Eof, ""};
   }
 
   for (const auto &p : pattern) {
@@ -16,10 +16,10 @@ Token Lexer::get_token() {
       } else if (p.first == Token::RealNum) {
         real_num = std::stod(s);
       }
-      return p.first;
+      return {p.first, s};
     }
   }
 
   llvm::errs() << "Unknown token: " << s << "\n";
-  return Token::Error;
+  return {Token::Error, ""};
 }

@@ -71,7 +71,7 @@ public:
   static inline int int_num;
   static inline double real_num;
 
-  static Token get_token();
+  static auto get_token() -> std::pair<Token, std::string>;
 
 private:
   using Pattern = std::pair<Token, regex>;
