@@ -8,7 +8,9 @@
 class ParserUtils {
 public:
   static inline Token cur_token = Token::Error;
+  static inline string cur_input;
   static std::map<Token, int> binary_operator_precedence;
+  static Token get_next_token(std::vector<std::string> &);
   static Token get_next_token();
   static std::map<Token, int> init_binary_operator_precedence();
   static bool is_bool_binary_operator(Token cur_token);

@@ -1,7 +1,6 @@
 #include "../AST/IdExpr.h"
 #include "../AST/IntIdExpr.h"
 #include "../AST/RealIdExpr.h"
-#include "../Lexer/Lexer.h"
 #include "ParserUtils.h"
 
 template <typename IdExprT> std::unique_ptr<IdExprT> IdExpr::parse() {

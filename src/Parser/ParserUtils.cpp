@@ -1,21 +1,26 @@
 #include "ParserUtils.h"
 #include "../AST/ArithBinaryExpr.h"
 #include "../AST/AssgStmt.h"
-#include "../AST/BinaryExpr.h"
 #include "../AST/BoolBinaryExpr.h"
 #include "../AST/CompoundStmt.h"
-#include "../AST/IdExpr.h"
 #include "../AST/IfStmt.h"
-#include "../AST/IntIdExpr.h"
 #include "../AST/IntNumExpr.h"
-#include "../AST/RealIdExpr.h"
 #include "../AST/RealNumExpr.h"
 #include "../AST/WhileStmt.h"
 
 std::map<Token, int> ParserUtils::binary_operator_precedence =
     init_binary_operator_precedence();
 
-Token ParserUtils::get_next_token() { return cur_token = Lexer::get_token(); }
+Token ParserUtils::get_next_token(std::vector<std::string> &cur_stmt) {
+  auto [token, stmt] = Lexer::get_token();
+  cur_stmt.emplace_back(stmt);
+  return cur_token = token;
+}
+
+Token ParserUtils::get_next_token() {
+  std::tie(cur_token, cur_input) = Lexer::get_token();
+  return cur_token;
+}
 
 std::map<Token, int> ParserUtils::init_binary_operator_precedence() {
   std::map<Token, int> ret;
