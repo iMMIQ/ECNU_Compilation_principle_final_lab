@@ -53,7 +53,9 @@ int main(int argc, char **argv) {
   std::stringstream ss(code);
 
   Program::in = &ss;
-  Program::parse();
+  if (Program::parse()) {
+    return 1;
+  }
   Program::code_gen();
 
   std::error_code EC;

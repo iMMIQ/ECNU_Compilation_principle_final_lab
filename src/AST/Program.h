@@ -34,7 +34,7 @@ public:
     decls.push_back(std::move(decl));
   }
 
-  static void parse();
+  static int parse();
 
   static auto code_gen() -> void;
 };

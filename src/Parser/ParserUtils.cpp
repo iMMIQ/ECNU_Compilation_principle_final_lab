@@ -7,6 +7,7 @@
 #include "../AST/IntNumExpr.h"
 #include "../AST/RealNumExpr.h"
 #include "../AST/WhileStmt.h"
+#include <iostream>
 
 std::map<Token, int> ParserUtils::binary_operator_precedence =
     init_binary_operator_precedence();
@@ -133,4 +134,18 @@ std::unique_ptr<Stmt> ParserUtils::parse_stmt_primary() {
     // TODO: handle Invalid
     return nullptr;
   }
+}
+
+void ParserUtils::handle_invalid(const std::vector<std::string> &input,
+                                 const std::string &expected) {
+  if (cur_token == Token::Eof) {
+    std::cerr << "The program ended unexpectedly." << std::endl;
+  } else {
+    std::cerr << "In '";
+    std::copy(input.begin(), input.end() - 1,
+              std::ostream_iterator<std::string>(std::cerr, " "));
+    std::cerr << input.back() << "' , expected " << expected << ", but found '"
+              << input.back() << "'." << std::endl;
+  }
+  error = true;
 }

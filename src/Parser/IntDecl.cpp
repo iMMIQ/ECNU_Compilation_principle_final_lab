@@ -1,20 +1,26 @@
 #include "../AST/IntDecl.h"
 #include "ParserUtils.h"
+#include <iostream>
 
 std::unique_ptr<Decl> IntDecl::parse() {
-  if (ParserUtils::get_next_token() != Token::ID) {
-    // TODO: handle invalid
+  std::vector<std::string> input{ParserUtils::cur_input};
+  if (ParserUtils::get_next_token(input) != Token::ID) {
+    ParserUtils::handle_invalid(input, "an identifier");
+    return nullptr;
   }
   auto id = IdExpr::parse<IntIdExpr>();
   if (ParserUtils::cur_token != Token::Assignment) {
-    // TODO: handle invalid
+    ParserUtils::handle_invalid(input, "'='");
+    return nullptr;
   }
   if (ParserUtils::get_next_token() != Token::IntNum) {
-    // TODO: handle invalid
+    ParserUtils::handle_invalid(input, "an integer number");
+    return nullptr;
   }
   auto int_num = IntNumExpr::parse();
   if (ParserUtils::cur_token != Token::End) {
-    // TODO: handle invalid
+    ParserUtils::handle_invalid(input, "';'");
+    return nullptr;
   }
   std::ignore = ParserUtils::get_next_token();
   return std::make_unique<IntDecl>(std::move(id), std::move(int_num));

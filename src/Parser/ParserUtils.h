@@ -4,11 +4,13 @@
 #include "../AST/Expr.h"
 #include "../AST/Stmt.h"
 #include "../Lexer/Lexer.h"
+#include <string>
 
 class ParserUtils {
 public:
   static inline Token cur_token = Token::Error;
-  static inline string cur_input;
+  static inline std::string cur_input;
+  static inline bool error = false;
   static std::map<Token, int> binary_operator_precedence;
   static Token get_next_token(std::vector<std::string> &);
   static Token get_next_token();
@@ -22,6 +24,8 @@ public:
   parse_binary_operator_rhs(int expr_prec, std::unique_ptr<Expr> lhs,
                             int bool_binary_operator_counter);
   static std::unique_ptr<Stmt> parse_stmt_primary();
+  static void handle_invalid(const std::vector<std::string> &input,
+                             const std::string &expected);
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_PARSERUTILS_H
