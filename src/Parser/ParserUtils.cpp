@@ -172,7 +172,7 @@ std::unique_ptr<Stmt> ParserUtils::parse_stmt_primary() {
 void ParserUtils::handle_invalid(const std::vector<std::string> &input,
                                  const std::string &expected) {
   if (cur_token == Token::Eof) {
-    std::cerr << "The program ended unexpectedly." << std::endl;
+    handle_eof();
   } else {
     std::cerr << "In '";
     std::copy(input.begin(), input.end() - 1,

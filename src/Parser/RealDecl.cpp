@@ -8,7 +8,6 @@ std::unique_ptr<Decl> RealDecl::parse() {
     return nullptr;
   }
   auto id = IdExpr::parse<RealIdExpr>(input);
-  ParserUtils::identifiers.insert(id->get_name());
   if (ParserUtils::cur_token != Token::Assignment) {
     ParserUtils::handle_invalid(input, "'='");
     return nullptr;
@@ -23,5 +22,6 @@ std::unique_ptr<Decl> RealDecl::parse() {
     return nullptr;
   }
   std::ignore = ParserUtils::get_next_token();
+  ParserUtils::identifiers.insert(id->get_name());
   return std::make_unique<RealDecl>(std::move(id), std::move(real_num));
 }

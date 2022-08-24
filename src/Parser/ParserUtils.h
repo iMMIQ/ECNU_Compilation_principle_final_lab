@@ -14,7 +14,7 @@ public:
   static inline bool error = false;
   static inline bool recoverable_error = false;
   static std::map<Token, int> binary_operator_precedence;
-  static std::set<std::string> identifiers;
+  static inline std::set<std::string> identifiers;
   static Token get_next_token(std::vector<std::string> &input);
   static Token get_next_token();
   static std::map<Token, int> init_binary_operator_precedence();

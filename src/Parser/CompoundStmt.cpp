@@ -9,6 +9,7 @@ std::unique_ptr<Stmt> CompoundStmt::parse() {
          ParserUtils::cur_token != Token::Eof) {
     auto stmt = ParserUtils::parse_stmt_primary();
     if (stmt == nullptr) {
+      std::ignore = ParserUtils::get_next_token();
       ret = 1;
       continue;
     }

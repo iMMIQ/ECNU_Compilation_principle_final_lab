@@ -10,7 +10,7 @@ auto Lexer::get_token() -> std::pair<Token, std::string> {
   for (const auto &p : pattern) {
     if (std::regex_match(s, p.second)) {
       if (p.first == Token::ID) {
-        std::swap(id, s);
+        id = s;
       } else if (p.first == Token::IntNum) {
         int_num = std::stoi(s);
       } else if (p.first == Token::RealNum) {

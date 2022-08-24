@@ -31,6 +31,7 @@ int Program::parse() {
                   << ParserUtils::cur_input << "'." << std::endl;
         ParserUtils::error = true;
       }
+      std::ignore = ParserUtils::get_next_token();
       ret = 1;
     }
   }
