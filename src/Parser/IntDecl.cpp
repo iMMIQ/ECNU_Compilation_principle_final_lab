@@ -1,6 +1,5 @@
 #include "../AST/IntDecl.h"
 #include "ParserUtils.h"
-#include <iostream>
 
 std::unique_ptr<Decl> IntDecl::parse() {
   std::vector<std::string> input{ParserUtils::cur_input};
