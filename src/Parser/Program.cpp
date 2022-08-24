@@ -6,6 +6,7 @@
 int Program::parse() {
   int ret = 0;
   std::ignore = ParserUtils::get_next_token();
+  ParserUtils::error = false;
   while (ParserUtils::cur_token != Token::Eof &&
          ParserUtils::cur_token != Token::LeftCurlyBracket) {
     if (ParserUtils::cur_token == Token::Int) {
@@ -29,13 +30,12 @@ int Program::parse() {
         std::cerr << "In Declarations, expect 'Int' or 'Real', but found '"
                   << ParserUtils::cur_input << "'." << std::endl;
         ParserUtils::error = true;
-        ret = 1;
       }
+      ret = 1;
     }
   }
-  ParserUtils::error = false;
   if (ParserUtils::cur_token == Token::Eof) {
-    std::cerr << "The program ended unexpectedly." << std::endl;
+    ParserUtils::handle_eof();
     ret = 1;
   }
   compound_stmt = CompoundStmt::parse();
@@ -51,6 +51,9 @@ int Program::parse() {
     std::copy(input.begin(), input.end() - 1,
               std::ostream_iterator<std::string>(std::cerr, " "));
     std::cerr << input.back() << "' occurred." << std::endl;
+    ret = 1;
+  }
+  if (ParserUtils::recoverable_error) {
     ret = 1;
   }
   return ret;

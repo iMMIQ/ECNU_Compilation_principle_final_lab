@@ -53,41 +53,60 @@ int ParserUtils::get_token_precedence(Token cur_token) {
       is_bool_binary_operator(cur_token)) {
     return binary_operator_precedence[cur_token];
   }
-  // TODO: handle invalid
-  return -1;
+  return -2;
 }
-std::unique_ptr<Expr> ParserUtils::parse_expr_paren() {
-  std::ignore = get_next_token();
-  auto ret = ArithBinaryExpr::parse();
+std::unique_ptr<Expr>
+ParserUtils::parse_expr_paren(std::vector<std::string> &input) {
+  std::ignore = get_next_token(input);
+  auto ret = ArithBinaryExpr::parse(input);
   if (!ret) {
     return nullptr;
   }
   if (cur_token != Token::RightRoundBracket) {
-    // TODO: handle invalid
+    handle_invalid(input, ")");
+    return nullptr;
   }
-  std::ignore = get_next_token();
+  std::ignore = get_next_token(input);
   return ret;
 }
-std::unique_ptr<Expr> ParserUtils::parse_expr_primary() {
+std::unique_ptr<Expr>
+ParserUtils::parse_expr_primary(std::vector<std::string> &input) {
   switch (cur_token) {
-  case Token::ID:
-    return IdExpr::parse<IdExpr>();
+  case Token::ID: {
+    auto id = IdExpr::parse<IdExpr>(input);
+    if (identifiers.find(id->get_name()) == identifiers.end()) {
+      recoverable_error = true;
+      std::cerr << "The identifier '" << id->get_name()
+                << "' used is not defined." << std::endl;
+    }
+    return id;
+  }
   case Token::IntNum:
-    return IntNumExpr::parse();
+    return IntNumExpr::parse(input);
   case Token::RealNum:
-    return RealNumExpr::parse();
+    return RealNumExpr::parse(input);
   case Token::LeftRoundBracket:
-    return parse_expr_paren();
+    return parse_expr_paren(input);
   default:
-    // TODO: handle invalid
+    handle_invalid(input,
+                   "an identifier, an integer number, a real number or '('");
     return nullptr;
   }
 }
 std::unique_ptr<Expr>
 ParserUtils::parse_binary_operator_rhs(int expr_prec, std::unique_ptr<Expr> lhs,
-                                       int bool_binary_operator_counter) {
+                                       int bool_binary_operator_counter,
+                                       std::vector<std::string> &input) {
   while (true) {
+    if (cur_token == Token::Eof) {
+      handle_eof();
+      return nullptr;
+    }
     int token_prec = get_token_precedence(cur_token);
+    if (token_prec == -2) {
+      handle_invalid(input, "a binary operator or ';'");
+      return nullptr;
+    }
     if (token_prec < expr_prec) {
       return lhs;
     }
@@ -95,18 +114,23 @@ ParserUtils::parse_binary_operator_rhs(int expr_prec, std::unique_ptr<Expr> lhs,
     if (is_bool_binary_operator(op)) {
       --bool_binary_operator_counter;
       if (bool_binary_operator_counter < 0) {
-        // TODO: handle invalid
+        std::cerr << "In '";
+        std::copy(input.begin(), input.end() - 1,
+                  std::ostream_iterator<std::string>(std::cerr, " "));
+        std::cerr << input.back()
+                  << "' , find too much binary compare operator." << std::endl;
+        ParserUtils::recoverable_error = true;
       }
     }
-    std::ignore = get_next_token();
-    auto rhs = parse_expr_primary();
+    std::ignore = get_next_token(input);
+    auto rhs = parse_expr_primary(input);
     if (!rhs) {
       return nullptr;
     }
     int next_prec = get_token_precedence(cur_token);
     if (token_prec < next_prec) {
       rhs = parse_binary_operator_rhs(token_prec + 1, std::move(rhs),
-                                      bool_binary_operator_counter);
+                                      bool_binary_operator_counter, input);
       if (!rhs) {
         return nullptr;
       }
@@ -123,15 +147,24 @@ ParserUtils::parse_binary_operator_rhs(int expr_prec, std::unique_ptr<Expr> lhs,
 std::unique_ptr<Stmt> ParserUtils::parse_stmt_primary() {
   switch (cur_token) {
   case Token::ID:
+    ParserUtils::error = false;
     return AssgStmt::parse();
   case Token::If:
+    ParserUtils::error = false;
     return IfStmt::parse();
   case Token::While:
+    ParserUtils::error = false;
     return WhileStmt::parse();
   case Token::LeftCurlyBracket:
+    ParserUtils::error = false;
     return CompoundStmt::parse();
   default:
-    // TODO: handle Invalid
+    if (!ParserUtils::error) {
+      std::cerr << "In Statement, expect an identifier, 'If', 'While' or '{', "
+                   "but found '"
+                << ParserUtils::cur_input << "'." << std::endl;
+      ParserUtils::error = true;
+    }
     return nullptr;
   }
 }
@@ -148,4 +181,7 @@ void ParserUtils::handle_invalid(const std::vector<std::string> &input,
               << input.back() << "'." << std::endl;
   }
   error = true;
+}
+void ParserUtils::handle_eof() {
+  std::cerr << "The program ended unexpectedly." << std::endl;
 }

@@ -8,16 +8,17 @@ std::unique_ptr<Decl> IntDecl::parse() {
     ParserUtils::handle_invalid(input, "an identifier");
     return nullptr;
   }
-  auto id = IdExpr::parse<IntIdExpr>();
+  auto id = IdExpr::parse<IntIdExpr>(input);
+  ParserUtils::identifiers.insert(id->get_name());
   if (ParserUtils::cur_token != Token::Assignment) {
     ParserUtils::handle_invalid(input, "'='");
     return nullptr;
   }
-  if (ParserUtils::get_next_token() != Token::IntNum) {
+  if (ParserUtils::get_next_token(input) != Token::IntNum) {
     ParserUtils::handle_invalid(input, "an integer number");
     return nullptr;
   }
-  auto int_num = IntNumExpr::parse();
+  auto int_num = IntNumExpr::parse(input);
   if (ParserUtils::cur_token != Token::End) {
     ParserUtils::handle_invalid(input, "';'");
     return nullptr;

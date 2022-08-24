@@ -18,7 +18,8 @@ public:
 
   auto code_gen() -> llvm::Value * override;
 
-  template <typename IdExprT> static std::unique_ptr<IdExprT> parse();
+  template <typename IdExprT>
+  static std::unique_ptr<IdExprT> parse(std::vector<std::string> &input);
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_IDEXPR_H

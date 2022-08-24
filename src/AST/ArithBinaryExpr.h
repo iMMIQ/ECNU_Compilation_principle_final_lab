@@ -11,7 +11,7 @@ public:
 
   auto code_gen() -> llvm::Value * override;
 
-  static std::unique_ptr<Expr> parse();
+  static std::unique_ptr<Expr> parse(std::vector<std::string> &input);
 };
 
 #endif // ECNU_COMPILATION_PRINCIPLE_FINAL_LAB_ARITHBINARYEXPR_H
