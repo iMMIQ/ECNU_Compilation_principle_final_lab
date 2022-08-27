@@ -90,11 +90,11 @@ int main(int argc, char **argv) {
   }
 
   if (!FLAGS_S && !FLAGS_C && !FLAGS_s) {
-    auto tmp = "llvm-link " + FLAGS_o + " -o " + FLAGS_o;
+    auto tmp = "llc " + FLAGS_o + " -o " + FLAGS_o + ".s";
     if (system(tmp.data())) {
       return 1;
     }
-    tmp = "chmod +x " + FLAGS_o;
+    tmp = "clang " + FLAGS_o + ".s -o " + FLAGS_o;
     if (system(tmp.data())) {
       return 1;
     }
